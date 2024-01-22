@@ -1,7 +1,7 @@
 platform: iOS
 buildPlatform:
 displayName: "Send to TestFlight"
-description: "Select App Store Connect settings for the process"
+description: "Upload binary for TestFlight publishing"
 marketPlace: "AppleAppStore"
 inputs:
 - key: "AC_XCODE_LIST_DIR"
