@@ -1,4 +1,5 @@
 platform: iOS
+purpose: Publish
 buildPlatform:
 displayName: "Send to TestFlight"
 description: "Upload binary for TestFlight publishing"
