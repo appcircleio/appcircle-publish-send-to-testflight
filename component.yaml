@@ -20,9 +20,10 @@ inputs:
   description: Specifies the Xcode version.
   helpText:
 - key: "AC_RELEASE_NOTES"
+  defaultValue: "$AC_BUILD_RELEASE_NOTES"
   editorType: textarea
   isRequired: false
-  title: Release notes for the Submission
+  title: Text will be shown in what to test is TestFlight
   description: Filling that area may effect App Store submission process.
   helpText:
 processFilename: bash
