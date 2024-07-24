@@ -28,10 +28,10 @@
 
         mv ./$AC_APP_FILE_NAME "filename.itmsp/$AC_APP_FILE_NAME"
 
-        #stat -f %z "filename.itmsp/$IPAFileName"
+        #stat -f %z "filename.itmsp/$AC_APP_FILE_NAME"
         fileSize=`stat -f %z "filename.itmsp/$AC_APP_FILE_NAME"`
         
-        #find -s "filename.itmsp/$IPAFileName" -type f -exec md5 -q {} \;
+        #find -s "filename.itmsp/$AC_APP_FILE_NAME" -type f -exec md5 -q {} \;
         md5Checksum=`find -s "filename.itmsp/$AC_APP_FILE_NAME" -type f -exec md5 -q {} \;`
         #echo $md5Checksum
         
@@ -47,7 +47,7 @@
         echo "        <asset type=\"bundle\">" >> filename.itmsp/metadata.xml 
         echo "        	<data_file>" >> filename.itmsp/metadata.xml
         echo "                <size>$fileSize</size>" >> filename.itmsp/metadata.xml 
-        echo "                <file_name>$IPAFileName</file_name>" >> filename.itmsp/metadata.xml 
+        echo "                <file_name>$AC_APP_FILE_NAME</file_name>" >> filename.itmsp/metadata.xml 
         echo "            	  <checksum type=\"md5\">$md5Checksum</checksum>" >> filename.itmsp/metadata.xml
         echo "          </data_file>" >> filename.itmsp/metadata.xml 
         echo "        </asset>" >> filename.itmsp/metadata.xml
@@ -74,7 +74,7 @@
             exit 1
           fi
         fi
-        if [ $StackType == 12 ] #Release
+        if [ $AC_STACK_TYPE == 12 ] #Release
         then
           #echo $dir/iTMSTransporter -m upload -u "$AppleUserName" -p "$ApplicationSpecificPassword" -f "$destinationDir" -k 100000 -v eXtreme
 
@@ -108,7 +108,7 @@
         #cat fastlane/Fastfile
 
         mv "$AC_API_KEY" "$AC_API_KEY_FILE_NAME"
-        #cat "$AppStoreConnectApiKeyFileName"
+        #cat "$AC_API_KEY_FILE_NAME"
 
         if [ $AC_STACK_TYPE == 10 ]
         then
