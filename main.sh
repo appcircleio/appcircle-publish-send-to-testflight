@@ -15,7 +15,7 @@
       echo "appleStoreSubmitApiType:$AC_APPLE_STORE_SUBMIT_API_TYPE"
       
       locale
-      curl -o "./$AC_APP_FILE_NAME" -k $AC_APP_FILE_URL
+      curl -o "./$AC_APP_FILE_NAME" -k "$AC_APP_FILE_URL"
        
      if [ "$AC_APPLE_STORE_SUBMIT_API_TYPE" == 1 ] || [ "$AC_APPLE_STORE_SUBMIT_API_TYPE" == "AppStoreConnectApiConnection" ]; then
  
