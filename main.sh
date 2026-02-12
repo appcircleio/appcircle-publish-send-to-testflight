@@ -13,20 +13,29 @@
       echo "AppStoreConnectApiKey:$AC_API_KEY"
       echo "AppStoreConnectApiKeyFileName:$AC_API_KEY_FILE_NAME"
       echo "appleStoreSubmitApiType:$AC_APPLE_STORE_SUBMIT_API_TYPE"
+      echo "Fastlane Version: $AC_FASTLANE_VERSION"
       
       locale
       curl -o "./$AC_APP_FILE_NAME" -k "$AC_APP_FILE_URL"
        
      if [ "$AC_APPLE_STORE_SUBMIT_API_TYPE" == 1 ] || [ "$AC_APPLE_STORE_SUBMIT_API_TYPE" == "AppStoreConnectApiConnection" ]; then
  
-        bundle init
-        echo "gem \"fastlane\"">>Gemfile
-        bundle install
-        mkdir fastlane
-        touch fastlane/Appfile
-        touch fastlane/Fastfile
-        mv $AC_FASTFILE_CONFIG "fastlane/Fastfile"
-        mv "$AC_API_KEY" "$AC_API_KEY_FILE_NAME"
+bundle init
+
+if [ -z "$AC_FASTLANE_VERSION" ] || [ "$AC_FASTLANE_VERSION" = "latest" ]; then
+    echo 'gem "fastlane"' >> Gemfile
+    echo "Using latest fastlane version"
+else
+    echo "Using fastlane version: $AC_FASTLANE_VERSION"
+    echo "gem \"fastlane\", \"$AC_FASTLANE_VERSION\"" >> Gemfile
+fi
+
+bundle install
+mkdir fastlane
+touch fastlane/Appfile
+touch fastlane/Fastfile
+mv $AC_FASTFILE_CONFIG "fastlane/Fastfile"
+mv "$AC_API_KEY" "$AC_API_KEY_FILE_NAME"
 
         if [ $AC_STACK_TYPE == 10 ]
         then
